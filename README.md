@@ -1,6 +1,5 @@
 # README
 
-branch:step7
 
 Userテーブル
 
