@@ -1,6 +1,6 @@
 # README
 
-branch:step5
+branch:step7
 
 Userテーブル
 
@@ -16,16 +16,16 @@ Taskテーブル
 |Column|Type|Description|
 |:---|:---|:---|
 |task_name|string||
-|dedline|datetime|
-|pliority|integer|
+|deadline|datetime|
+|priority|integer|
 |status|string|
 |note|text|
-|user_id|bigint|foreigen_key
-|lavel_id|bigint|foreigen_key|
+|user_id|bigint|foreign_key
+|label_id|bigint|foreign_key|
 
-Lavelテーブル
+Labelテーブル
 
 |Column|Type|Description|
 |:---|:---|:---|
-|lavel_name|string||
-|task_id|bigint|foreigen_key
+|label_name|string||
+|task_id|bigint|foreign_key
