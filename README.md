@@ -5,6 +5,7 @@ Userテーブル
 |Column|Type|Description|
 |:---|:---|:---|
 |user_name|string||
+|email|string|index|
 |password|string|
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7168a33c-6a5d-4abb-a3fb-99eba9b63797" name="Default Changelist" comment="Add:ER図追加、README.md編集">
+    <list default="true" id="7168a33c-6a5d-4abb-a3fb-99eba9b63797" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
@@ -40,8 +40,8 @@
         <entry file="file://$PROJECT_DIR$/docs/el-training.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="143">
-                <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+              <first_editor relative-caret-position="195">
+                <caret line="13" selection-start-line="13" selection-end-line="13" />
               </first_editor>
               <second_editor />
             </state>
@@ -61,8 +61,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="214">
-                <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+              <first_editor relative-caret-position="105">
+                <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
               </first_editor>
               <second_editor />
             </state>
@@ -84,7 +84,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="6" />
+    <option name="x" value="7" />
     <option name="y" value="23" />
     <option name="width" value="718" />
     <option name="height" value="877" />
@@ -247,7 +247,8 @@
       <updated>1558427711568</updated>
       <workItem from="1558427713540" duration="1205000" />
       <workItem from="1558484862475" duration="4598000" />
-      <workItem from="1558659319987" duration="6654000" />
+      <workItem from="1558659319987" duration="7220000" />
+      <workItem from="1558917104337" duration="252000" />
     </task>
     <task id="LOCAL-00001" summary="Add:rails new、ruby,rails,psqlを最新安定版に変更">
       <created>1558493936006</created>
@@ -263,16 +264,23 @@
       <option name="project" value="LOCAL" />
       <updated>1558664532803</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix:README.md誤字修正">
+      <created>1558749027010</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1558749027012</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12457000" />
+    <option name="totallyTimeSpent" value="13275000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="6" y="23" width="718" height="877" extended-state="0" />
+    <frame x="10" y="23" width="718" height="877" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21597633" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22189349" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -285,7 +293,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.3299363" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.56433123" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.56433123" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50147927" side_tool="true" weight="0.3299363" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -323,20 +331,11 @@
     <MESSAGE value="Add:docsにER図追加" />
     <MESSAGE value="Add:README.md編集" />
     <MESSAGE value="Add:ER図追加、README.md編集" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add:ER図追加、README.md編集" />
+    <MESSAGE value="fix:README.md誤字修正" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix:README.md誤字修正" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="52" selection-start-column="52" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/.ruby-version">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -347,6 +346,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Rakefile">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/スクリーンショット 2019-05-24 11.05.13.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="52" selection-start-column="52" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -354,11 +369,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Rakefile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/スクリーンショット 2019-05-24 11.05.13.png">
-      <provider selected="true" editor-type-id="images" />
+    <entry file="file://$PROJECT_DIR$/docs/el-training.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="195">
+            <caret line="13" selection-start-line="13" selection-end-line="13" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
@@ -367,21 +386,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/el-training.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="143">
-            <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="214">
-            <caret line="27" column="26" selection-start-line="27" selection-start-column="26" selection-end-line="27" selection-end-column="26" />
+          <first_editor relative-caret-position="105">
+            <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
           </first_editor>
           <second_editor />
         </state>
