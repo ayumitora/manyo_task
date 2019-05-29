@@ -24,5 +24,12 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
+    task = Task.create!(task_name: 'たすたすてす', note: 'さんぷるさんぷる')
+    # get :show, params: {id: task.id}
+    # save_and_open_page
+    # expect(assigns(:task)).to eq task
+    visit tasks_path(id: task.id)
+    save_and_open_page
+    expect(page).to have_content'さんぷるさんぷる'
   end
 end
