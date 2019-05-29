@@ -1,0 +1,12 @@
+ja:
+  manyo:
+    task: "タスク"
+    user: "ユーザー"
+    task_name: "タスク名"
+    note: "内容"
+    user_name: "ユーザー名"
+    email: "メールアドレス"
+    current_password: "現在のパスワード"
+    password: "パスワード"
+    password_confirmation: "確認用パスワード"
+    remember_me: "ログインを記憶"

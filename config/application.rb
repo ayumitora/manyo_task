@@ -39,5 +39,8 @@ module ManyoTask
                        request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+    I18n.config.available_locales = :ja
+    I18n.enforce_available_locales = false
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
   end
 end
