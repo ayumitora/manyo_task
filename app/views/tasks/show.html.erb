@@ -1,4 +1,4 @@
-<h2>タスク：<%= @task.task_name %></h2>
-<p>詳細：<%= @task.note %></p>
+<h2><%= t('task_name') %>：<%= @task.task_name %></h2>
+<p><%= t('note') %>：<%= @task.note %></p>
 
-<%= link_to '一覧へ', root_path %>
+<%= link_to "#{t('index')}", root_path %>
