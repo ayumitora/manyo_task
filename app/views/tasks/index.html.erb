@@ -11,12 +11,12 @@
       <tr>
         <td><%= task.task_name %></td>
         <td><%= task.note %></td>
-        <td><%= link_to "#{t('to_note')}", task_path(task.id) %></td>
-        <td><%= link_to "#{t('edit')}", edit_task_path(task.id) %></td>
-        <td><%= link_to "#{t('destroy')}", task_path(task.id), method: :delete ,data:{confirm:"本当に削除しますか？"} %></td>
+        <td><%= link_to t('to_note'), task_path(task.id) %></td>
+        <td><%= link_to t('edit'), edit_task_path(task.id) %></td>
+        <td><%= link_to t('destroy'), task_path(task.id), method: :delete ,data:{confirm:"本当に削除しますか？"} %></td>
       </tr>
     <% end %>
   </table>
 </div>
 
-<%= link_to "#{t('new')}", new_task_path %>
+<%= link_to t('new'), new_task_path %>
