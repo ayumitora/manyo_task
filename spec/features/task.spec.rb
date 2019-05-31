@@ -16,6 +16,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit new_task_path
     fill_in 'task[task_name]', with: 'あけましておめでとうございます。'
     fill_in 'task[note]', with: '今年もよろしくお願いします'
+    click_button I18n.t('create')
     expect(page).to have_content 'あけましておめでとうございます'
     expect(page).to have_content '今年もよろしくお願いします'
   end
