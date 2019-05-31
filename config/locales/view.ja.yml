@@ -16,3 +16,4 @@ ja:
   destroy: 削除
   new: 新規作成
   confirm: 本当に削除しますか?
+  created_at: 作成日時
