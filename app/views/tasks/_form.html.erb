@@ -1,7 +1,7 @@
 <%= form_with(model: @task, local: true ) do |form| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
-      <h2><%= @task.errors.count %>件のエラーがあります。</h2>
+      <h2><%= pluralize(@task.errors.count, "error") %> </h2>
       <ul>
 
         <% @task.errors.full_messages.each do |msg| %>
@@ -12,12 +12,14 @@
   <% end %>
 
   <div class="task_content">
-    <%= form.label :タスク名 %>
+
+    <%= form.label :task_name  %>
     <%= form.text_field :task_name %>
-    <%= form.label :タスク詳細 %>
+    <%= form.label :note %>
     <%= form.text_field :note %>
   </div>
-  <%= form.submit "この内容で保存"%>
+  <%= form.submit t('create')%>
 <% end %>
 
-<%= link_to 'タスク一覧へ', root_path %>
+<br>
+<%= link_to t('index'), root_path %>
