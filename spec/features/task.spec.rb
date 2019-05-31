@@ -2,12 +2,20 @@
 require 'rails_helper'
 
 RSpec.feature "タスク管理機能", type: :feature do
+
+  background do
+    # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task, created_at: Time.current + 1.days)
+    FactoryBot.create(:third_task, created_at: Time.current + 2.days)
+  end
+
   scenario "タスク一覧のテスト" do
-    Task.create!(task_name: 'test_task_01', note: 'testtesttest')
-    Task.create!(task_name: 'test_task_02', note: 'samplesample')
+    # Task.create!(task_name: 'test_task_01', note: 'testtesttest')
+    # Task.create!(task_name: 'test_task_02', note: 'samplesample')
     visit tasks_path
-    expect(page).to have_content 'testtesttest'
-    expect(page).to have_content 'samplesample'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
   end
 
   scenario "タスク作成のテスト" do
@@ -24,5 +32,11 @@ RSpec.feature "タスク管理機能", type: :feature do
     # save_and_open_page
     visit tasks_path(id: task.id)
     expect(page).to have_content'さんぷるさんぷる'
+  end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+    visit tasks_path
+    expect(Task.order("updated_at DESC").map(&:id))
+    # タスクが作成日時の降順に並んでいるかのテスト
   end
 end
