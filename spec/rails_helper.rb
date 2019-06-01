@@ -64,6 +64,7 @@ RSpec.configure do |config|
 
   config.before(:all) do
     DatabaseCleaner.start
+    FactoryBot.reload
   end
 
   config.after(:all) do
