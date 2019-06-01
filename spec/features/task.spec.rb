@@ -5,9 +5,9 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   background do
     # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
-    FactoryBot.create(:task)
-    FactoryBot.create(:second_task, created_at: Time.current + 1.days)
-    FactoryBot.create(:third_task, created_at: Time.current + 2.days)
+    FactoryBot.create(:task, id:5)
+    FactoryBot.create(:second_task, id:6, created_at: Time.current + 1.days)
+    FactoryBot.create(:third_task, id:7, created_at: Time.current + 2.days)
   end
 
   scenario "タスク一覧のテスト" do
@@ -36,7 +36,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
-    expect(Task.order("updated_at DESC").map(&:id))
+    expect(Task.order("created_at DESC").map(&:id)).to eq [7,6,5]
     # タスクが作成日時の降順に並んでいるかのテスト
   end
 end
