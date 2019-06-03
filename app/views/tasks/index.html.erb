@@ -1,11 +1,13 @@
 <h1><%= t('index') %></h1>
 <p><%= notice %></p>
 <div class="table">
+  <%= link_to t('sort_deadline'), root_path(sort_expired: "true") %>
   <table>
     <tr>
       <th><%= t('task_name') %></th>
       <th><%= t('note') %></th>
       <th><%= t('created_at') %></th>
+      <th><%= t('deadline') %></th>
     </tr>
 
     <% @tasks.each do |task| %>
@@ -13,6 +15,7 @@
         <td><%= task.task_name %></td>
         <td><%= task.note %></td>
         <td><%= task.created_at %></td>
+        <td><%= task.deadline %></td>
         <td><%= link_to t('to_note'), task_path(task.id) %></td>
         <td><%= link_to t('edit'), edit_task_path(task.id) %></td>
         <td><%= link_to t('destroy'), task_path(task.id), method: :delete ,data:{confirm:I18n.t('confirm')} %></td>

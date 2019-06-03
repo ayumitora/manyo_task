@@ -5,6 +5,7 @@ FactoryBot.define do
   factory :task do
     task_name { 'Factoryで作ったデフォルトのタイトル１' }
     note { 'Factoryで作ったデフォルトのコンテント１' }
+    # deadline { Time.zone.now }
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -12,10 +13,12 @@ FactoryBot.define do
   factory :second_task, class: Task do
     task_name { 'Factoryで作ったデフォルトのタイトル２' }
     note { 'Factoryで作ったデフォルトのコンテント２' }
+    # deadline { Time.zone.now }
   end
 
   factory :third_task, class: Task do
     task_name { 'Factoryデフォルトタイトル３' }
     note { 'Factoryデフォルトコンテント３' }
+    # deadline { Time.zone.now }
   end
 end
