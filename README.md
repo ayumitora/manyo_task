@@ -1,5 +1,10 @@
-# README
+# 万葉新人研修課題
 
+Rails 5.2.3
+
+https://nameless-anchorage-10334.herokuapp.com/
+
+# テーブル
 
 Userテーブル
 
@@ -28,3 +33,26 @@ Labelテーブル
 |:---|:---|:---|
 |label_name|string||
 |task_id|bigint|foreign_key
+
+
+#　デプロイ方法
+
+$ heroku login
+herokuにログイン
+
+$ heroku create
+新しいリポジトリを作る
+自動でリモートリポジトリとして登録される
+
+$ git push heroku master
+pushする
+
+$ heroku run rails db:migrate
+heroku上にデータベース作成
+
+https://nameless-anchorage-10334.herokuapp.com/
+アクセスして確認
+
+※設定などはこちらから
+https://dashboard.heroku.com/apps
+
