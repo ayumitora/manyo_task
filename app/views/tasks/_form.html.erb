@@ -17,6 +17,8 @@
     <%= form.text_field :task_name %>
     <%= form.label :note %>
     <%= form.text_field :note %>
+    <%= form.label :deadline %>
+    <%= form.datetime_select :deadline %>
   </div>
   <%= form.submit t('create')%>
 <% end %>
