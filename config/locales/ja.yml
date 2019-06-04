@@ -5,6 +5,8 @@ ja:
       task:
         task_name: "タスク名"
         note: "内容"
+        deadline: "期限"
+        status: "状態"
       user:
         user_name: "名前"
         email: "メールアドレス"

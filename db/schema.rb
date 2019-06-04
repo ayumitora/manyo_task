@@ -23,5 +23,4 @@ ActiveRecord::Schema.define(version: 2019_06_03_065806) do
     t.datetime "deadline", null: false
     t.string "status", default: "未入力", null: false
   end
-
 end

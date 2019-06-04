@@ -1,7 +1,17 @@
 <h1><%= t('index') %></h1>
 <p><%= notice %></p>
+<%= form_with( model:@task, method: :get, local: true ) do |f| %>
+  <%= f.label :task_name_key, t('sarch_task_name') %>
+  <%= f.text_field :task_name_key %>
+  <%= f.label :status_key, t('sarch_status') %>
+  <%= f.select :status_key, [["完了","完了"],["未着手","未着手"],["着手中","着手中"],["保留中","保留中"],["未入力","未入力"]],prompt:'' %>
+  <%= f.hidden_field :sarch, value: 'true' %>
+  <%= f.submit t('sarch') %>
+  <%#= link_to 'Clear', forecasts_path %>
+<% end %>
+<%= link_to t('sort_deadline'), root_path(sort_expired: "true") %>
+
 <div class="table">
-  <%= link_to t('sort_deadline'), root_path(sort_expired: "true") %>
   <table>
     <tr>
       <th><%= t('task_name') %></th>

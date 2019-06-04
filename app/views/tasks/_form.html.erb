@@ -19,6 +19,8 @@
     <%= form.text_field :note %>
     <%= form.label :deadline %>
     <%= form.datetime_select :deadline %>
+    <%= form.label :status %>
+    <%= form.select :status, [["完了","完了"],["未着手","未着手"],["着手中","着手中"],["保留中","保留中"]] %>
   </div>
   <%= form.submit t('create')%>
 <% end %>
