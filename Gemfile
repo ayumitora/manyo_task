@@ -47,6 +47,9 @@ group :development, :test do
   gem 'capybara'
   gem "database_cleaner"
   gem 'launchy'
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :development do
