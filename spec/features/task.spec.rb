@@ -4,7 +4,6 @@ require 'rails_helper'
 RSpec.feature "タスク管理機能", type: :feature do
 
   background do
-    # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
     FactoryBot.create(:task, id:5)
     FactoryBot.create(:second_task, id:6, created_at: Time.current + 1.days)
     FactoryBot.create(:third_task, id:7, created_at: Time.current + 2.days)
@@ -36,8 +35,6 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
-    # save_and_open_page
     expect(Task.order("created_at DESC").map(&:id)).to eq [7,6,5]
-    # expect(page).to have_content (Task.order(created_at: :desc))
   end
 end

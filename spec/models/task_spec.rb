@@ -16,4 +16,13 @@ RSpec.describe Task, type: :model do
     task = Task.new(task_name: '失敗しないテスト', note: '失敗しないテスト')
     expect(task).to be_valid
   end
+
+  scenario "タスクが絞り込めるかのテスト" do
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+    FactoryBot.create(:third_task)
+    task = Task.search(task_name_key: 'タイトル３', status: '着手中')
+    # expect(task).to include ("Factoryデフォルトタイトル３")
+    expect(task).to be task
+  end
 end
