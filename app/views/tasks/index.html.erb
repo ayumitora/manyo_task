@@ -4,12 +4,19 @@
   <%= f.label :task_name_key, t('sarch_task_name') %>
   <%= f.text_field :task_name_key %>
   <%= f.label :status_key, t('sarch_status') %>
-  <%= f.select :status_key, [["完了","完了"],["未着手","未着手"],["着手中","着手中"],["保留中","保留中"],["未入力","未入力"]],prompt:'' %>
+  <%= f.select :status_key, [[t('done'),t('done')],
+                             [t('not_started'),t('not_started')],
+                             [t('in_progress'),t('in_progress')],
+                             [t('hold'),t('hold')],
+                             [t('done'),t('done')]],
+               prompt:''
+  %>
   <%= f.hidden_field :search, value: 'true' %>
   <%= f.submit t('search') %>
   <%#= link_to 'Clear', forecasts_path %>
 <% end %>
 <%= link_to t('sort_deadline'), root_path(sort_expired: "true") %>
+<%= link_to t('sort_created_at'), tasks_path %>
 
 <div class="table">
   <table>
@@ -19,6 +26,7 @@
       <th><%= t('created_at') %></th>
       <th><%= t('deadline') %></th>
       <th><%= t('status') %></th>
+      <th><%= t('priority') %></th>
     </tr>
 
     <% @tasks.each do |task| %>
@@ -28,6 +36,7 @@
         <td><%= task.created_at %></td>
         <td><%= task.deadline %></td>
         <td><%= task.status %></td>
+        <th><%= task.priority %></th>
         <td><%= link_to t('to_note'), task_path(task.id) %></td>
         <td><%= link_to t('edit'), edit_task_path(task.id) %></td>
         <td><%= link_to t('destroy'), task_path(task.id), method: :delete ,data:{confirm:I18n.t('confirm')} %></td>

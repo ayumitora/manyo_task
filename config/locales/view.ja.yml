@@ -19,7 +19,17 @@ ja:
   created_at: 作成日時
   deadline: 終了期限
   sort_deadline: 終了期限でソートする
+  sort_created_at: 作成日時でソートする
   status: 状態
   sarch_task_name: タスク名検索
   sarch_status: 状態で絞る
   search: 検索
+  priority: 優先度
+  done: 完了
+  not_started: 未着手
+  in_progress: 進行中
+  hold: 保留中
+  not_entered: 未入力
+  top: 高
+  medium: 中
+  low: 低

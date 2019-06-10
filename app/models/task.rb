@@ -6,7 +6,9 @@ class Task < ApplicationRecord
   scope :search, -> (params) {where('(task_name LIKE ?) AND (status LIKE ?)',
                                   "%#{params[:task][:task_name_key]}%",
                                   "%#{params[:task][:status_key]}%")}
-  # scope :search_by_keyword, -> (keyword) {
-  #   where("(orders.name LIKE :keyword) OR (orders.address LIKE :keyword)", keyword: "%#{sanitize_sql_like(keyword)}%") if keyword.present?
-  # }
-end
+
+  enum priority: [I18n.t('not_entered'),
+                  I18n.t('top'),
+                  I18n.t('medium'),
+                  I18n.t('low')]
+  end
