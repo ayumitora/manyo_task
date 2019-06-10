@@ -4,15 +4,12 @@ require 'rails_helper'
 RSpec.feature "タスク管理機能", type: :feature do
 
   background do
-    # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
-    FactoryBot.create(:task, id:5, deadline:Time.current)
-    FactoryBot.create(:second_task, id:6, created_at: Time.current + 1.days, deadline:Time.current + 1.days)
-    FactoryBot.create(:third_task, id:7, created_at: Time.current + 2.days, deadline:Time.current + 2.days)
+    FactoryBot.create(:task, id:5)
+    FactoryBot.create(:second_task, id:6, created_at: Time.current + 1.days)
+    FactoryBot.create(:third_task, id:7, created_at: Time.current + 2.days)
   end
 
   scenario "タスク一覧のテスト" do
-    # Task.create!(task_name: 'test_task_01', note: 'testtesttest')
-    # Task.create!(task_name: 'test_task_02', note: 'samplesample')
     visit tasks_path
     expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
     expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
@@ -28,22 +25,25 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    task = Task.create!(task_name: 'たすたすてす', note: 'さんぷるさんぷる', deadline:Time.current)
-    # save_and_open_page
-    visit tasks_path(id: task.id)
-    expect(page).to have_content'さんぷるさんぷる'
+    visit tasks_path(id:7)
+    expect(page).to have_content'Factoryデフォルトコンテント３'
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
-    # save_and_open_page
     expect(Task.order("created_at DESC").map(&:id)).to eq [7,6,5]
   end
 
-  scenario "タスクが終了期限の昇順に並んでいるかのテスト" do
+  scenario "viewにてタスクが絞り込めるかのテスト" do
+    FactoryBot.create(:task, status: "保留中")
+    FactoryBot.create(:second_task, status: "保留中")
+    FactoryBot.create(:third_task, status: "保留中")
     visit tasks_path
-    click_link I18n.t('sort_deadline')
+    fill_in I18n.t('sarch_task_name'), with: 'タイトル２'
+    select '保留中', from: I18n.t('sarch_status')
+    click_button I18n.t('search')
     save_and_open_page
-    expect(Task.order("deadline asc").map(&:id)).to eq [5,6,7]
+    expect(page).to have_content 'タイトル２'
+    expect(page).to have_content '保留中'
   end
 end

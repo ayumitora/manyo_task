@@ -3,9 +3,17 @@ class TasksController < ApplicationController
 
   def index
     if params[:sort_expired]
-      @tasks = Task.all.order(deadline: :asc)
-    else
-      @tasks = Task.all.order(created_at: :desc)
+      # @tasks = Task.order(deadline: :asc)
+      @tasks = Task.expired
+    elsif params[:task] == nil
+      # @tasks = Task.order(created_at: :desc)
+      @tasks = Task.latest
+    elsif params[:task][:search]
+      # @tasks = Task.where('task_name LIKE ? AND status LIKE ?', "%#{params[:task][:task_name_key]}%", "%#{params[:task][:status_key]}%")
+      # @tasks = Task.search(params[:task][:task_name_key],params[:task][:status_key])
+      @tasks = Task.search(params)
+    # else
+    #   @tasks = Task.all.order(created_at: :desc)
     end
   end
 
@@ -30,7 +38,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      redirect_to root_path, notice: "つぶやきを編集しました！"
+      redirect_to root_path, notice: "タスクを編集しました！"
     else
       render 'edit'
     end
@@ -44,7 +52,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:task_name, :note, :deadline)
+    params.require(:task).permit(:task_name, :note, :deadline, :status)
   end
 
   def set_task

@@ -19,3 +19,7 @@ ja:
   created_at: 作成日時
   deadline: 終了期限
   sort_deadline: 終了期限でソートする
+  status: 状態
+  sarch_task_name: タスク名検索
+  sarch_status: 状態で絞る
+  search: 検索
