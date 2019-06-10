@@ -9,6 +9,4 @@ class Task < ApplicationRecord
   # scope :search_by_keyword, -> (keyword) {
   #   where("(orders.name LIKE :keyword) OR (orders.address LIKE :keyword)", keyword: "%#{sanitize_sql_like(keyword)}%") if keyword.present?
   # }
-
-
 end

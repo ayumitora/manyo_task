@@ -17,12 +17,17 @@ RSpec.describe Task, type: :model do
     expect(task).to be_valid
   end
 
-  scenario "タスクが絞り込めるかのテスト" do
+  it "modelにてタスクが絞り込めるかのテスト" do
     FactoryBot.create(:task)
     FactoryBot.create(:second_task)
     FactoryBot.create(:third_task)
-    task = Task.search(task_name_key: 'タイトル３', status: '着手中')
-    # expect(task).to include ("Factoryデフォルトタイトル３")
-    expect(task).to be task
+    FactoryBot.create(:task, status: "保留中")
+    FactoryBot.create(:second_task, status: "保留中")
+    expect_task = FactoryBot.create(:third_task, status: "保留中")
+    result = Task.search(task: {task_name_key: "タイトル３", status_key: "保留中"})
+    # binding.pry
+
+    expect(result[0].id).to be expect_task.id
+    expect(result.size).to eq 1
   end
 end

@@ -10,8 +10,6 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク一覧のテスト" do
-    # Task.create!(task_name: 'test_task_01', note: 'testtesttest')
-    # Task.create!(task_name: 'test_task_02', note: 'samplesample')
     visit tasks_path
     expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
     expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
@@ -27,14 +25,25 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    task = Task.create!(task_name: 'たすたすてす', note: 'さんぷるさんぷる')
-    # save_and_open_page
-    visit tasks_path(id: task.id)
-    expect(page).to have_content'さんぷるさんぷる'
+    visit tasks_path(id:7)
+    expect(page).to have_content'Factoryデフォルトコンテント３'
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
     expect(Task.order("created_at DESC").map(&:id)).to eq [7,6,5]
+  end
+
+  scenario "viewにてタスクが絞り込めるかのテスト" do
+    FactoryBot.create(:task, status: "保留中")
+    FactoryBot.create(:second_task, status: "保留中")
+    FactoryBot.create(:third_task, status: "保留中")
+    visit tasks_path
+    fill_in I18n.t('sarch_task_name'), with: 'タイトル２'
+    select '保留中', from: I18n.t('sarch_status')
+    click_button I18n.t('search')
+    save_and_open_page
+    expect(page).to have_content 'タイトル２'
+    expect(page).to have_content '保留中'
   end
 end
