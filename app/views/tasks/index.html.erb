@@ -7,14 +7,14 @@
   <%= f.select :status_key, [[t('done'),t('done')],
                              [t('not_started'),t('not_started')],
                              [t('in_progress'),t('in_progress')],
-                             [t('hold'),t('hold')],
-                             [t('done'),t('done')]],
+                             [t('hold'), t('hold')]],
                prompt:''
   %>
   <%= f.hidden_field :search, value: 'true' %>
   <%= f.submit t('search') %>
   <%#= link_to 'Clear', forecasts_path %>
 <% end %>
+<%= link_to t('sort_priority'), root_path(sort_priority: "true") %>
 <%= link_to t('sort_deadline'), root_path(sort_expired: "true") %>
 <%= link_to t('sort_created_at'), tasks_path %>
 

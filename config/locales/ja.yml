@@ -1,12 +1,20 @@
 ---
 ja:
   activerecord:
+    models:
+      user: "ユーザー"
     attributes:
       task:
         task_name: "タスク名"
         note: "内容"
         deadline: "期限"
         status: "状態"
+        priority: "優先度"
+      task/priority:
+        not_entered: "未入力"
+        high: "高"
+        medium: "中"
+        low: "低"
       user:
         user_name: "名前"
         email: "メールアドレス"
