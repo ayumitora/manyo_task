@@ -42,8 +42,20 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in I18n.t('sarch_task_name'), with: 'タイトル２'
     select '保留中', from: I18n.t('sarch_status')
     click_button I18n.t('search')
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_content 'タイトル２'
     expect(page).to have_content '保留中'
+  end
+
+  scenario "優先度が同録できているか" do
+    visit tasks_path(id:7)
+    # save_and_open_page
+    expect(page).to have_content '低'
+  end
+
+  scenario "優先度順にソートできているか" do
+    visit tasks_path
+    click_on '優先度でソートする'
+    expect(Task.order("priority ASC").map(&:id)).to eq [5,7,6]
   end
 end
