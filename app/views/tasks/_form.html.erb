@@ -26,8 +26,10 @@
                               [t('hold'), t('hold')]]
     %>
     <%= form.label :priority %>
-    <%#= form.select :priority, {t('top'): t('top'), t('medium'): t('medium'), t('low'): t('low')} %>
-    <%= form.select :priority, {top: 'top', medium: 'medium', low: 'low' } %>
+    <%#= form.select :priority, {t('high'): high, medium: t('medium'), low: t('low')} %>
+    <%#= form.select :priority, {high: 'high', medium: 'medium', low: 'low' } %>
+    <%= form.select :priority, Task.priorities_i18n.invert, {} %>
+
     <%= form.submit t('create') %>
   </div>
 <% end %>

@@ -9,8 +9,8 @@ ja:
         dead_line: 締め切り
   enums:
     task:
-      type:
-        not_enterd: 未入力
+      priority:
+        not_entered: 未入力
         high: 高
         medium: 中
         low: 低

@@ -1,4 +1,11 @@
 ja:
+  enums:
+    task:
+      priority:
+        not_entered: 未入力
+        high: 高
+        medium: 中
+        low: 低
   task: タスク
   user: ユーザー
   task_name: タスク名
@@ -29,8 +36,4 @@ ja:
   not_started: 未着手
   in_progress: 進行中
   hold: 保留中
-  not_entered: 未入力
-  high: 高
-  medium: 中
-  low: 低
   sort_priority: 優先度でソートする

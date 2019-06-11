@@ -1,5 +1,12 @@
 ---
 ja:
+  enums:
+    task:
+      priority:
+        not_entered: 未入力
+        high: 高
+        medium: 中
+        low: 低
   activerecord:
     models:
       task: "タスク"
