@@ -7,6 +7,7 @@ FactoryBot.define do
     note { 'Factoryで作ったデフォルトのコンテント１' }
     deadline { Time.now }
     status { "未着手" }
+    priority { 'high' }
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -16,6 +17,7 @@ FactoryBot.define do
     note { 'Factoryで作ったデフォルトのコンテント２' }
     deadline { Time.now }
     status { "着手中" }
+    priority { 'low' }
   end
 
   factory :third_task, class: Task do
@@ -23,5 +25,6 @@ FactoryBot.define do
     note { 'Factoryデフォルトコンテント３' }
     deadline { Time.now }
     status { "完了" }
+    priority { 'medium' }
   end
 end
