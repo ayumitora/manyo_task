@@ -20,10 +20,19 @@
     <%= form.label :deadline %>
     <%= form.datetime_select :deadline %>
     <%= form.label :status %>
-    <%= form.select :status, [["完了","完了"],["未着手","未着手"],["着手中","着手中"],["保留中","保留中"]] %>
+    <%= form.select :status, [[t('done'), t('done')],
+                              [t('not_started'), t('not_started')],
+                              [t('in_progress'), t('in_progress')],
+                              [t('hold'), t('hold')]]
+    %>
+    <%= form.label :priority %>
+    <%#= form.select :priority, {high: 'high', medium: 'medium', low: 'low' } %>
+    <%= form.select :priority, Task.priorities_i18n.invert, {} %>
+
+    <%= form.submit t('create') %>
   </div>
-  <%= form.submit t('create')%>
 <% end %>
+
 
 <br>
 <%= link_to t('index'), root_path %>

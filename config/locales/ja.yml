@@ -1,12 +1,28 @@
 ---
 ja:
+  enums:
+    task:
+      priority:
+        not_entered: 未入力
+        high: 高
+        medium: 中
+        low: 低
   activerecord:
+    models:
+      task: "タスク"
+      user: "ユーザー"
     attributes:
       task:
         task_name: "タスク名"
         note: "内容"
         deadline: "期限"
         status: "状態"
+        priority: "優先度"
+      task/priority:
+        not_entered: "未入力"
+        high: "高"
+        medium: "中"
+        low: "低"
       user:
         user_name: "名前"
         email: "メールアドレス"
@@ -19,6 +35,13 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  enums:
+    task:
+      type:
+        not_entered: "未入力"
+        high: "高"
+        medium: "中"
+        low: "低"
   date:
     abbr_day_names:
       - 日
