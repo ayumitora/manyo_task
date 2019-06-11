@@ -2,6 +2,7 @@
 ja:
   activerecord:
     models:
+      task: "タスク"
       user: "ユーザー"
     attributes:
       task:
@@ -27,6 +28,13 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  enums:
+    task:
+      type:
+        not_entered: "未入力"
+        high: "高"
+        medium: "中"
+        low: "低"
   date:
     abbr_day_names:
       - 日

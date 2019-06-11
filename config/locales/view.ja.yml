@@ -30,7 +30,7 @@ ja:
   in_progress: 進行中
   hold: 保留中
   not_entered: 未入力
-  top: 高
+  high: 高
   medium: 中
   low: 低
   sort_priority: 優先度でソートする

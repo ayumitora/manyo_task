@@ -24,7 +24,14 @@ class Task < ApplicationRecord
 
   # enum priority: [:no_enterd, :high, :medium, :low]
   #
-  enum priority: [I18n.t('not_entered'), I18n.t('top'), I18n.t('medium'), I18n.t('low')]
+  # enum priority: [I18n.t('not_entered'), I18n.t('high'), I18n.t('medium'), I18n.t('low')]
+  #
+  enum priority: { not_entered: 0, high: 1, medium: 2, low: 3 }
+
+  # enum priority: { I18n.t('not_entered'): 0,
+  #                  I18n.t('high'): 1,
+  #                  I18n.t('medium'): 2,
+  #                  I18n.t('low'): 3}
 
 end
 

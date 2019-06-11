@@ -26,7 +26,8 @@
                               [t('hold'), t('hold')]]
     %>
     <%= form.label :priority %>
-    <%= form.select :priority, [[t('top'), 1], [t('medium'), 2], [t('low'), 3]] %>
+    <%#= form.select :priority, {t('top'): t('top'), t('medium'): t('medium'), t('low'): t('low')} %>
+    <%= form.select :priority, {top: 'top', medium: 'medium', low: 'low' } %>
     <%= form.submit t('create') %>
   </div>
 <% end %>
