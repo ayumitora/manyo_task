@@ -56,7 +56,6 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "優先度順にソートできているか" do
     visit tasks_path
     click_on '優先度でソートする'
-    save_and_open_page
     expect(Task.order("priority ASC").map(&:id)).to eq [5,7,6]
   end
 end
