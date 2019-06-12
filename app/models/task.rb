@@ -1,6 +1,6 @@
 class Task < ApplicationRecord
   validates :task_name, presence: true
-
+  scope :important, -> {order(priority: :asc)}
   scope :latest, -> {order(created_at: :desc)}
   scope :expired, -> {order(deadline: :asc)}
   scope :search, -> (params) {where('(task_name LIKE ?) AND (status LIKE ?)',
