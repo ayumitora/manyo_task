@@ -20,6 +20,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'task[task_name]', with: 'あけましておめでとうございます。'
     fill_in 'task[note]', with: '今年もよろしくお願いします'
     click_button I18n.t('create')
+    save_and_open_page
     expect(page).to have_content 'あけましておめでとうございます'
     expect(page).to have_content '今年もよろしくお願いします'
   end
@@ -47,7 +48,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content '保留中'
   end
 
-  scenario "優先度が同録できているか" do
+  scenario "優先度が登録できているか" do
     visit tasks_path(id:7)
     # save_and_open_page
     expect(page).to have_content '低'
