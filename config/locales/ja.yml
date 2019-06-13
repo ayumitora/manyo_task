@@ -1,12 +1,12 @@
 ---
 ja:
-  enums:
-    task:
-      priority:
-        not_entered: 未入力
-        high: 高
-        medium: 中
-        low: 低
+#  enums:
+#    task:
+#      priority:
+#        not_entered: 未入力
+#        high: 高
+#        medium: 中
+#        low: 低
   activerecord:
     models:
       task: "タスク"
@@ -18,11 +18,11 @@ ja:
         deadline: "期限"
         status: "状態"
         priority: "優先度"
-      task/priority:
-        not_entered: "未入力"
-        high: "高"
-        medium: "中"
-        low: "低"
+#      task/priority:
+#        not_entered: "未入力"
+#        high: "高"
+#        medium: "中"
+#        low: "低"
       user:
         user_name: "名前"
         email: "メールアドレス"
