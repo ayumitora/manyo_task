@@ -7,10 +7,10 @@ ja:
         status: 対応状況
         note: 内容
         dead_line: 締め切り
-  enums:
-    task:
-      priority:
-        not_entered: 未入力
-        high: 高
-        medium: 中
-        low: 低
+#  enums:
+#    task:
+#      priority:
+#        not_entered: 未入力
+#        high: 高
+#        medium: 中
+#        low: 低

@@ -12,7 +12,7 @@ Userテーブル
 |:---|:---|:---|
 |user_name|string||
 |email|string|index|
-|password|string|
+|passwdigest|string|
 
 
 Taskテーブル
