@@ -24,6 +24,7 @@ ja:
         current_password: "現在のパスワード"
         password: "パスワード"
         password_confirmation: "確認用パスワード"
+        admin: 管理者権限
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
