@@ -1,16 +1,9 @@
 ja:
-  enums:
-    task:
-      priority:
-        not_entered: 未入力
-        high: 高
-        medium: 中
-        low: 低
   task: タスク
   user: ユーザー
   task_name: タスク名
   note: 内容
-  user_name: ユーザー名"
+  user_name: ユーザー名
   email: メールアドレス
   current_password: 現在のパスワード
   password: パスワード
@@ -37,3 +30,5 @@ ja:
   in_progress: 進行中
   hold: 保留中
   sort_priority: 優先度でソートする
+  user_entry: ユーザー登録
+  administrator_authority: 管理者権限
