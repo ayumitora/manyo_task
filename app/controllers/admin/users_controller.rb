@@ -40,9 +40,6 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_url, notice: "ユーザー「#{@user.user_name}」を削除しました。"
   end
 
-  def index
-  end
-
   private
 
   def user_params

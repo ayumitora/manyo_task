@@ -1,24 +1,5 @@
-<h1>Admin::Users#edit</h1>
-<%= form_with(model: [:admin, @user], local: true ) do |f| %>
-  <div class="admin_form_content">
-    <%= f.label :user_name  %>
-    <%= f.text_field :user_name, class: 'form-control'  %>
+<h1><%= t('edit') %> </h1>
 
-    <%= f.label :email %>
-    <%= f.text_field :email, class: 'form-control'  %>
-    <br>
+<%= render 'admin/users/form'%>
 
-    <%= f.label :admin, class:"form-check-label" %>
-    <%= f.check_box :admin, {} , class: 'form-check-input' %>
-    <br><br>
-
-
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-    <%= f.submit t('create') %>
-  </div>
-<% end %>
+<%= link_to t('user_index'), admin_users_path %>

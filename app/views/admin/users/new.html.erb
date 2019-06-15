@@ -1,26 +1,4 @@
 <h1> <%= t('user_entry') %> </h1>
 
-<%= form_with(model: [:admin, @user], local: true ) do |f| %>
-  <div class="admin_form_content">
-    <%= f.label :user_name  %>
-    <%= f.text_field :user_name, class: 'form-control'  %>
 
-    <%= f.label :email %>
-    <%= f.text_field :email, class: 'form-control'  %>
-    <br>
-
-    <%= f.label :admin, class:"form-check-label" %>
-      <%= f.check_box :admin, {} , class: 'form-check-input' %>
-      <br><br>
-
-
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
-
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-    <%= f.submit t('create') %>
-  </div>
-<%#= render paetial: 'form', locals: {user:@user} %>
-<% end %>
+<%= render 'admin/users/form'%>
