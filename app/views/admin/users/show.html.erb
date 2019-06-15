@@ -6,4 +6,5 @@
 
 <%= link_to t('edit'), edit_admin_user_path(@user) %>
 <%= link_to t('destroy'), [:admin, @user],method: :delete,data:{confirm:I18n.t('confirm')} %>
+<%= link_to t('user_index'), admin_users_path %>
 <%#= link_to t('index'), root_path %>
