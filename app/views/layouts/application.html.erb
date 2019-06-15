@@ -21,6 +21,7 @@
           <li><%= link_to t('activerecord.models.user'), admin_users_path %></li>
         <% end %>
         <li><%= link_to t('logout'), logout_path, method: :delete %></li>
+        <li><h4><%= current_user.user_name %></h4></li>
       </ul>
     <% else %>
       <ul>
