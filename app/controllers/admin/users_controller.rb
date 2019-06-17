@@ -1,12 +1,16 @@
 class Admin::UsersController < ApplicationController
-  before_action :require_admin, onry: [:index, :destroy]
+  # before_action :require_admin, onry: [:index, :destroy]
   skip_before_action :login_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
 
   def index
+    if current_user.admin?
     @users = User.all
+    else
+      redirect_to root_path
+    end
   end
 
   def show
@@ -19,6 +23,7 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      session[:user_id] = @user.id
       redirect_to admin_user_path(@user),notice: "ユーザー「#{@user.user_name}」を登録しました。"
     else
       render :new
@@ -37,9 +42,13 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_url, notice: "ユーザー「#{@user.user_name}」を削除しました。"
-  end
+    if current_user.admin?
+      @user.destroy
+      redirect_to admin_users_url, notice: "ユーザー「#{@user.user_name}」を削除しました。"
+    else
+      redirect_to root_path
+    end
+      end
 
   private
 
@@ -52,8 +61,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def require_admin
-    redirect_to root_path unless current_user.admin?
-
-  end
+  # def require_admin
+  #   redirect_to root_path unless current_user.admin?
+  # end
 end
