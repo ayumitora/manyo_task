@@ -8,6 +8,7 @@ FactoryBot.define do
     deadline { Time.now }
     status { "未着手" }
     priority { 'high' }
+    association :user, factory: :admin_user
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -18,6 +19,7 @@ FactoryBot.define do
     deadline { Time.now }
     status { "着手中" }
     priority { 'low' }
+    user
   end
 
   factory :third_task, class: Task do
@@ -26,5 +28,6 @@ FactoryBot.define do
     deadline { Time.now }
     status { "完了" }
     priority { 'medium' }
+    user
   end
 end
