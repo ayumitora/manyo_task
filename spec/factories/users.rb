@@ -7,7 +7,7 @@ FactoryBot.define do
   end
 
   factory :user do
-    user_name { "管理テストユーザー" }
+    user_name { "テストユーザー" }
     email { "test@example.com" }
     password_digest { "password" }
     admin { false }
