@@ -3,11 +3,9 @@ class Admin::UsersController < ApplicationController
   skip_before_action :login_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
-
-
   def index
     if current_user.admin?
-    @users = User.all
+      @users = User.all
     else
       redirect_to root_path
     end
@@ -23,8 +21,8 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to admin_user_path(@user),notice: "ユーザー「#{@user.user_name}」を登録しました。"
+      session[:user_id] = @user.id unless current_user.admin?
+      redirect_to admin_user_path(@user), notice: "ユーザー「#{@user.user_name}」を登録しました。"
     else
       render :new
     end
@@ -48,7 +46,7 @@ class Admin::UsersController < ApplicationController
     else
       redirect_to root_path
     end
-      end
+  end
 
   private
 
