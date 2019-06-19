@@ -5,7 +5,8 @@ class Admin::UsersController < ApplicationController
 
   def index
     if current_user.admin?
-      @users = User.all
+      @users = User.select(
+        :id, :user_name, :email, :admin, :created_at, :updated_at)
     else
       redirect_to root_path
     end
@@ -22,7 +23,8 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id unless current_user.admin?
-      redirect_to admin_user_path(@user), notice: "ユーザー「#{@user.user_name}」を登録しました。"
+      redirect_to admin_user_path(@user),
+                  notice: "ユーザー「#{@user.user_name}」を登録しました。"
     else
       render :new
     end
@@ -33,7 +35,8 @@ class Admin::UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to admin_users_path(@user), notice: "ユーザー「#{@user.user_name}」を更新しました。"
+      redirect_to admin_users_path(@user),
+                  notice: "ユーザー「#{@user.user_name}」を更新しました。"
     else
       render :new
     end
@@ -42,7 +45,8 @@ class Admin::UsersController < ApplicationController
   def destroy
     if current_user.admin?
       @user.destroy
-      redirect_to admin_users_url, notice: "ユーザー「#{@user.user_name}」を削除しました。"
+      redirect_to admin_users_url,
+                  notice: "ユーザー「#{@user.user_name}」を削除しました。"
     else
       redirect_to root_path
     end

@@ -7,14 +7,9 @@ RSpec.feature "タスク管理機能", type: :feature do
     @user_a = FactoryBot.create(:user)
     @user_b_admin = FactoryBot.create(:admin_user)
     #user_aのタスク
-    FactoryBot.create(:task, id: 5, user: @user_a)
-    FactoryBot.create(:second_task, id: 6, created_at: Time.current + 1.days, user: @user_a)
-    FactoryBot.create(:third_task, id: 7, created_at: Time.current + 2.days, user: @user_a)
-
-    #user_b_adminのタスク
-    FactoryBot.create(:task, id: 8, user: @user_b_admin)
-    FactoryBot.create(:second_task, id: 9, created_at: Time.current + 1.days, user: @user_b_admin)
-    FactoryBot.create(:third_task, id: 10, created_at: Time.current + 2.days, user: @user_b_admin)
+    FactoryBot.create(:task, id: 5, status: "保留中", user: @user_a)
+    FactoryBot.create(:second_task, id: 6, status: "保留中", created_at: Time.current + 1.days, user: @user_a)
+    FactoryBot.create(:third_task, id: 7, status: "保留中", created_at: Time.current + 2.days, user: @user_a)
 
     # user_aでログイン
     visit login_path
@@ -41,37 +36,35 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスク詳細のテスト" do
     visit tasks_path(id: 7)
-    expect(page).to have_content 'Factoryデフォルトコンテント３'
+    expect(page).to have_content 'Factoryデフォルトのコンテント３'
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
-    save_and_open_page
-    expect(Task.find(@user_a.id).order("created_at DESC").map(&:id)).to eq [7, 6, 5]
+    # save_and_open_page
+    # binding.pry
+    expect(User.find(@user_a.id).tasks.order("created_at DESC").map(&:id)).to eq [7, 6, 5]
   end
 
-# scenario "viewにてタスクが絞り込めるかのテスト" do
-#   FactoryBot.create(:task, status: "保留中")
-#   FactoryBot.create(:second_task, status: "保留中")
-#   FactoryBot.create(:third_task, status: "保留中")
-#   visit tasks_path
-#   fill_in I18n.t('sarch_task_name'), with: 'タイトル２'
-#   select '保留中', from: I18n.t('sarch_status')
-#   click_button I18n.t('search')
-#   # save_and_open_page
-#   expect(page).to have_content 'タイトル２'
-#   expect(page).to have_content '保留中'
-# end
-#
-# scenario "優先度が登録できているか" do
-#   visit tasks_path(id: 7)
-#   # save_and_open_page
-#   expect(page).to have_content '低'
-# end
-#
-# scenario "優先度順にソートできているか" do
-#   visit tasks_path
-#   click_on '優先度でソートする'
-#   expect(Task.order("priority ASC").map(&:id)).to eq [5, 7, 6]
-# end
+  scenario "viewにてタスクが絞り込めるかのテスト" do
+    visit tasks_path
+    fill_in I18n.t('sarch_task_name'), with: 'タイトル２'
+    select '保留中', from: I18n.t('sarch_status')
+    click_button I18n.t('search')
+    # save_and_open_page
+    expect(page).to have_content 'タイトル２'
+    expect(page).to have_content '保留中'
+  end
+
+  scenario "優先度が登録できているか" do
+    visit tasks_path(id: 7)
+    save_and_open_page
+    expect(page).to have_content '低'
+  end
+
+  scenario "優先度順にソートできているか" do
+    visit tasks_path
+    click_on '優先度でソートする'
+    expect(User.find(@user_a.id).tasks.order("priority ASC").map(&:id)).to eq [5, 7, 6]
+  end
 end
