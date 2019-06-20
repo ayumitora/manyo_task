@@ -69,8 +69,8 @@ RSpec.feature "ユーザー機能", type: :feature do
     check 'user[admin]'
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'
-    save_and_open_page
     click_button I18n.t('create')
+    save_and_open_page
     expect(page).to have_content 'ユーザー作成テスト'
   end
   #

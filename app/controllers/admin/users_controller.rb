@@ -22,7 +22,8 @@ class Admin::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      session[:user_id] = @user.id unless current_user.admin?
+      session[:user_id] = @user.id unless current_user
+      # ↑管理ユーザーが新しいユーザを登録した際、他のユーザーのセッションに切り替わらないようにする記述
       redirect_to admin_user_path(@user),
                   notice: "ユーザー「#{@user.user_name}」を登録しました。"
     else
