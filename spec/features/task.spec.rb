@@ -9,9 +9,9 @@ RSpec.feature "タスク管理機能", type: :feature do
     # binding.pry
 
     #user_aのタスク
-    FactoryBot.create(:task, id: 5, status: "保留中")
-    FactoryBot.create(:second_task, id: 6, status: "保留中", created_at: Time.current + 1.days)
-    FactoryBot.create(:third_task, id: 7, status: "保留中", created_at: Time.current + 2.days )
+    FactoryBot.create(:task, id: 5, status: "保留中", user: @user_a)
+    FactoryBot.create(:second_task, id: 6, status: "保留中", created_at: Time.current + 1.days, user: @user_a)
+    FactoryBot.create(:third_task, id: 7, status: "保留中", created_at: Time.current + 2.days, user: @user_a )
 
     # user_aでログイン
     visit login_path
