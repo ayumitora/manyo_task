@@ -3,8 +3,11 @@ require 'rails_helper'
 RSpec.feature "ユーザー機能", type: :feature do
 
   background do
-    @user_a = FactoryBot.create(:user)
-    @user_b_admin = FactoryBot.create(:admin_user)
+    @user_a = FactoryBot.create(:user, id: 5)
+    @user_b_admin = FactoryBot.create(:admin_user, id: 6)
+
+    #user_aのタスク
+    FactoryBot.create(:task, id: 5, status: "保留中", user: @user_a)
 
     #user_b_adminのタスク
     FactoryBot.create(:task4, id: 8, status: "着手中", user: @user_b_admin)
@@ -70,34 +73,57 @@ RSpec.feature "ユーザー機能", type: :feature do
     fill_in 'user[password]', with: 'password'
     fill_in 'user[password_confirmation]', with: 'password'
     click_button I18n.t('create')
-    save_and_open_page
     expect(page).to have_content 'ユーザー作成テスト'
   end
-  #
-  # scenario "ユーザー登録と同時にログイン" do
-  #
-  # end
-  #
-  # scenario "ログインしている時は、ユーザー登録画面（new画面）に行かせない" do
-  #
-  # end
-  #
-  # scenario "自分（current_user）以外のユーザのマイページ（userのshow画面）に行かせない" do
-  #
-  # end
-  #
-  # scenario "管理画面でユーザ一覧・作成・更新・削除ができる" do
-  #
-  # end
-  #
-  # scenario "ユーザを削除したら、そのユーザが抱えているタスクを削除" do
-  #
-  # end
-  #
-  # scenario "ユーザの一覧画面で、ユーザが持っているタスクの数を表示" do
-  #
-  # end
 
+  scenario "一般ユーザーがログインしている時は、ユーザー登録画面（new画面）に行かせない" do
+#user_aでログイン
+    visit login_path
+    fill_in I18n.t('email'), with: 'test@example.com'
+    fill_in I18n.t('password'), with: 'password'
+    click_button I18n.t('login')
+    visit tasks_path
+    expect(page).not_to have_content 'ユーザー一覧'
+#ログイン時は管理画面のユーザー一覧からしかユーザー新規作成は行けない
+  end
 
+  scenario "一般ユーザーに自分（current_user）以外のユーザのマイページ（userのshow画面）に行かせない" do
+#user_aでログイン
+    visit login_path
+    fill_in I18n.t('email'), with: 'test@example.com'
+    fill_in I18n.t('password'), with: 'password'
+    click_button I18n.t('login')
+    visit admin_user_path(6)
+    expect(page).not_to have_content '管理テストユーザー'
 
+  end
+
+  scenario "管理画面でユーザ一覧・作成・更新・削除ができる" do
+#user_b_adminでログイン
+    visit login_path
+    fill_in I18n.t('email'), with: 'admin_test@example.com'
+    fill_in I18n.t('password'), with: 'password'
+    click_button I18n.t('login')
+    click_link I18n.t('activerecord.models.user')
+    expect(page).to have_link I18n.t('new')
+    expect(page).to have_link I18n.t('edit')
+    expect(page).to have_link I18n.t('destroy')
+  end
+
+  scenario "ユーザを削除したら、そのユーザが抱えているタスクを削除" do
+    @user_a.destroy
+    expect(Task).not_to have_content 'Factoryデフォルトのタイトル１'
+  end
+
+  scenario "ユーザの一覧画面で、ユーザが持っているタスクの数を表示" do
+    #user_b_adminでログイン
+    visit login_path
+    fill_in I18n.t('email'), with: 'admin_test@example.com'
+    fill_in I18n.t('password'), with: 'password'
+    click_button I18n.t('login')
+    click_link I18n.t('activerecord.models.user')
+    expect(page).to have_content I18n.t('task_count')
+    expect(page).to have_content 3
+    expect(page).to have_content 1
+  end
 end

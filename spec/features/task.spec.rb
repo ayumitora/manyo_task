@@ -6,10 +6,12 @@ RSpec.feature "タスク管理機能", type: :feature do
   background do
     @user_a = FactoryBot.create(:user)
     @user_b_admin = FactoryBot.create(:admin_user)
+    # binding.pry
+
     #user_aのタスク
-    FactoryBot.create(:task, id: 5, status: "保留中", user: @user_a)
-    FactoryBot.create(:second_task, id: 6, status: "保留中", created_at: Time.current + 1.days, user: @user_a)
-    FactoryBot.create(:third_task, id: 7, status: "保留中", created_at: Time.current + 2.days, user: @user_a)
+    FactoryBot.create(:task, id: 5, status: "保留中")
+    FactoryBot.create(:second_task, id: 6, status: "保留中", created_at: Time.current + 1.days)
+    FactoryBot.create(:third_task, id: 7, status: "保留中", created_at: Time.current + 2.days )
 
     # user_aでログイン
     visit login_path
@@ -41,8 +43,6 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     visit tasks_path
-    # save_and_open_page
-    # binding.pry
     expect(User.find(@user_a.id).tasks.order("created_at DESC").map(&:id)).to eq [7, 6, 5]
   end
 

@@ -1,8 +1,14 @@
-<h2><%= t('user_name') %>：<%= @user.user_name %></h2>
-<p><%= t('email') %>：<%= @user.email %></p>
-<p><%= t('admin') %>：<%= @user.admin? ? "あり" : "なし" %></p>
-<!--<p><%#= t('status') %>：<%#= @task.status %></p>-->
-<!--<p><%#= t('priority') %>：<%#= @task.priority %></p>-->
+<% if (@user.id == current_user.id) || (current_user.admin?) %>
+  <h2><%= t('user_name') %>：<%= @user.user_name %></h2>
+  <p><%= t('email') %>：<%= @user.email %></p>
+  <p><%= t('admin') %>：<%= @user.admin? ? "あり" : "なし" %></p>
+  <%= link_to t('edit'), edit_admin_user_path(@user) %>
+  <%= link_to t('destroy'), [:admin, @user], method: :delete, data: {confirm: I18n.t('confirm')} %>
+  <%= link_to t('index'), root_path %>
+<% else %>
+  <p>権限がありません</p>
+<% end %>
+
 
 <% if current_user.admin? %>
   <div class="table">
@@ -33,7 +39,3 @@
   </div>
 <% end %>
 
-
-<%= link_to t('edit'), edit_admin_user_path(@user) %>
-<%= link_to t('destroy'), [:admin, @user], method: :delete, data: {confirm: I18n.t('confirm')} %>
-<%= link_to t('index'), root_path %>
