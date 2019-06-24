@@ -8,7 +8,9 @@ class Admin::UsersController < ApplicationController
       @users = User.select(
         :id, :user_name, :email, :admin, :created_at, :updated_at)
     else
-      redirect_to root_path
+      redirect_to root_path,
+                  notice: "管理者権限がありません"
+
     end
   end
 
