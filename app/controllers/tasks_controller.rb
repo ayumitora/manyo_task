@@ -4,17 +4,17 @@ class TasksController < ApplicationController
   def index
     if params[:sort_priority]
       # @tasks = Task.order(priority: :asc)
-      @tasks = Task.important
+      @tasks = current_user.tasks.important
     elsif params[:sort_expired]
       # @tasks = Task.order(deadline: :asc)
-      @tasks = Task.expired
+      @tasks = current_user.tasks.expired
     elsif params[:task] == nil
       # @tasks = Task.order(created_at: :desc)
-      @tasks = Task.latest
+      @tasks = current_user.tasks.latest
     elsif params[:task][:search]
       # @tasks = Task.where('task_name LIKE ? AND status LIKE ?', "%#{params[:task][:task_name_key]}%", "%#{params[:task][:status_key]}%")
       # @tasks = Task.search(params[:task][:task_name_key],params[:task][:status_key])
-      @tasks = Task.search(params)
+      @tasks = current_user.tasks.search(params)
     end
     @tasks = @tasks.page(params[:page]).per(7)
   end
@@ -24,7 +24,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.new(task_params)
     if @task.save
       redirect_to root_path,notice:"タスクが保存されました！"
     else
