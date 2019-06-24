@@ -2,6 +2,7 @@ class Admin::UsersController < ApplicationController
   # before_action :require_admin, onry: [:index, :destroy]
   skip_before_action :login_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_destroy :do_not_destroy_last_admin
 
   def index
     if current_user.admin?
@@ -65,6 +66,7 @@ class Admin::UsersController < ApplicationController
   def set_user
     @user = User.find(params[:id])
   end
+
 
   # def require_admin
   #   redirect_to root_path unless current_user.admin?
