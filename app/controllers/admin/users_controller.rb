@@ -2,7 +2,6 @@ class Admin::UsersController < ApplicationController
   # before_action :require_admin, onry: [:index, :destroy]
   skip_before_action :login_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_destroy :do_not_destroy_last_admin
 
   def index
     if current_user.admin?
