@@ -50,6 +50,9 @@ class Admin::UsersController < ApplicationController
       @user.destroy
       redirect_to admin_users_url,
                   notice: "ユーザー「#{@user.user_name}」を削除しました。"
+    elsif @user != current_user
+      redirect_to admin_users_url,
+                  notice: "自分自身を削除することは出来ません。"
     else
       redirect_to root_path
     end
