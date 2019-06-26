@@ -21,11 +21,12 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
+    @task.label_tags.build #子要素
   end
 
   def create
     @task = current_user.tasks.new(task_params)
-    if @task.save
+    if @task.save     # 親要素を保存かけてあげることで自動で子要素も保存されます！
       redirect_to root_path,notice:"タスクが保存されました！"
     else
       render 'new'
