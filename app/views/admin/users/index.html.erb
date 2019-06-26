@@ -15,7 +15,6 @@
 
     <% @users.each do |user| %>
       <tr>
-<!--        <td><%#= link_to user.user_name,[:admin,user] %></td>-->
         <td><%= user.user_name %></td>
         <td><%= user.email %></td>
         <td><%= user.admin? ? "あり":"なし" %></td>

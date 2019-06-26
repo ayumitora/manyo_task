@@ -2,6 +2,7 @@ class Admin::UsersController < ApplicationController
   # before_action :require_admin, onry: [:index, :destroy]
   skip_before_action :login_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :destroy_myself, only: [:destroy]
 
   def index
     if current_user.admin?
@@ -46,16 +47,17 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    if current_user.admin?
-      @user.destroy
-      redirect_to admin_users_url,
-                  notice: "ユーザー「#{@user.user_name}」を削除しました。"
-    elsif @user != current_user
-      redirect_to admin_users_url,
-                  notice: "自分自身を削除することは出来ません。"
-    else
-      redirect_to root_path
-    end
+    @user.destroy
+    # if current_user.admin?
+    #   @user.destroy
+    #   redirect_to admin_users_url(@user),
+    #               notice: "ユーザー「#{@user.user_name}」を削除しました。"
+    # elsif @user != current_user
+    #   redirect_to admin_users_url(@user),
+    #               notice: "自分自身を削除することは出来ません。"
+    # else
+    #   redirect_to root_path, notice: '削除できませんでした'
+    # end
   end
 
   private
@@ -69,6 +71,12 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def destroy_myself
+  if @user == current_user
+        redirect_to admin_users_url,
+                    notice: "自分自身を削除することは出来ません。"
+    end
+  end
 
   # def require_admin
   #   redirect_to root_path unless current_user.admin?
