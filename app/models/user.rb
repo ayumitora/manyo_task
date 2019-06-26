@@ -8,13 +8,9 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
 
-
   def do_not_destroy_last_admin
-    if User.where(admin: :true).count == 1
-      # errors.add :base,'少なくとも1つ、管理者権限のあるアカウントが必要です'
+    if self.admin? && User.where(admin: :true).count == 1
       throw :abort
-      # flash[:notice] = "少なくとも1つ、管理者権限のあるアカウントが必要です"
-      # return false
     end
   end
 end
