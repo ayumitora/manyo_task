@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :set_task, only: [:show, :edit,:update, :destroy]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
     if params[:sort_priority]
@@ -26,11 +26,12 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new(task_params)
-    if @task.save     # 親要素を保存かけてあげることで自動で子要素も保存されます！
-      redirect_to root_path,notice:"タスクが保存されました！"
+    if @task.save # 親要素を保存かけてあげることで自動で子要素も保存されます！
+      redirect_to root_path, notice: "タスクが保存されました！"
     else
       render 'new'
     end
+    LabelTag.create(label_id: @task.label_tags[:label_id], task_id: @task.id)
   end
 
   def show
@@ -55,7 +56,14 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.require(:task).permit(:task_name, :note, :deadline, :status, :priority)
+    params.require(:task).permit(
+      :task_name,
+      :note,
+      :deadline,
+      :status,
+      :priority,
+      label_tags: [:label_id]
+    )
   end
 
   def set_task
