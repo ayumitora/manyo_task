@@ -9,3 +9,35 @@ User.create!(
       password: 'password',
       password_confirmation: 'password'
 )
+
+Label.create!(
+  label_name: 'children'
+)
+
+Label.create!(
+  label_name: 'mother'
+)
+
+Label.create!(
+  label_name: 'father'
+)
+
+Label.create!(
+  label_name: 'friend'
+)
+
+Label.create!(
+  label_name: 'housework'
+)
+
+Label.create!(
+  label_name: 'work'
+)
+
+Label.create!(
+  label_name: 'play'
+)
+
+Label.create!(
+  label_name: 'other'
+)

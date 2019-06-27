@@ -41,4 +41,15 @@ ja:
   sigin_up: サインアップ
   task_count: タスク数
   login: ログイン
+  label: ラベル
+  children: 子供たち
+  mother: 母
+  father: 父
+  friend: 友達
+  housework: 家事
+  work: 仕事
+  play: 遊び
+  other: その他
+
+
 
