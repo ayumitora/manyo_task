@@ -21,7 +21,7 @@ class TasksController < ApplicationController
 
   def new
     @task = Task.new
-    @task.label_tags.build #子要素
+      @task.label_tags.build #子要素
   end
 
   def create
@@ -64,7 +64,7 @@ class TasksController < ApplicationController
       :deadline,
       :status,
       :priority,
-      label_tags_attributes:[:label_id]
+      label_tags_attributes: [:label_id]
     )
   end
 
