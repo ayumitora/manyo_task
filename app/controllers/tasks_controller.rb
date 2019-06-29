@@ -26,12 +26,15 @@ class TasksController < ApplicationController
 
   def create
     @task = current_user.tasks.new(task_params)
+    # @task << label_tags(params[:task][:label_tags])
     if @task.save # 親要素を保存かけてあげることで自動で子要素も保存されます！
       redirect_to root_path, notice: "タスクが保存されました！"
     else
       render 'new'
     end
-    LabelTag.create(label_id: @task.label_tags[:label_id], task_id: @task.id)
+    # binding.pry
+
+    # LabelTag.create(label_id: @task.label_tags[:label_id], task_id: @task.id)
   end
 
   def show
@@ -62,7 +65,7 @@ class TasksController < ApplicationController
       :deadline,
       :status,
       :priority,
-      label_tags: [:label_id]
+      label_tags_attributes:[:label_id]
     )
   end
 

@@ -10,7 +10,7 @@ class Task < ApplicationRecord
   enum priority: { not_entered: 0, high: 1, medium: 2, low: 3 }
   belongs_to :user
   has_many :label_tags, dependent: :destroy
-  has_many :which_label, through: :label_tags, source: :label
+  has_many :which_labels, through: :label_tags, source: :label
   accepts_nested_attributes_for :label_tags
 end
 
