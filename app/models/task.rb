@@ -11,6 +11,7 @@ class Task < ApplicationRecord
   belongs_to :user
   has_many :label_tags, dependent: :destroy
   has_many :which_labels, through: :label_tags, source: :label
+  #.which_labelsメソッドで、紐づくlabelを呼び出せる
   accepts_nested_attributes_for :label_tags
 end
 

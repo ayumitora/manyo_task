@@ -30,7 +30,7 @@
 <br>
     <p><%= t('label') %></p>
     <% Label.all.each do |label| %>
-      <%= form.check_box :label_tags, {
+      <%= form.fields_for.check_box :label_tags, {
           multiple: true,
           #multiple:複数チェックボックスで配列形式のパラメータを送れる
           checkd: label[:checked],

@@ -32,9 +32,8 @@ class TasksController < ApplicationController
     else
       render 'new'
     end
-    # binding.pry
-
-    # LabelTag.create(label_id: @task.label_tags[:label_id], task_id: @task.id)
+    # binding.pr
+    # @task.label_tags.create(label_id:(params[:label_tags]), task_id: @task.id)
   end
 
   def show
