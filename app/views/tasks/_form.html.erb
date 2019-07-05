@@ -29,18 +29,17 @@
     <%= form.select :priority, Task.priorities_i18n.invert, {} %>
     <br>
     <p><%= t('label') %></p>
-    <% Label.all.each do |label| %>
-      <%= fields_for :label_tags do |f| %>
-        <%= f.check_box :label_id, {
-            multiple: true,
-            #multiple:複数チェックボックスで配列形式のパラメータを送れる
-            checkd: label[:checked],
-            #:checked	チェックボックスのチェックの有無
-            disabled: label[:disabled],
-            #:disabled	フォームの項目の利用禁止
-            include_hidden: false}, #チェックが入っていない時、何も送らない
-                        label[:id] %>
-      <% end %>
+    <% @labels.each do |label| %>
+      <%= form.check_box :label_tags, {
+          multiple: true,
+          #multiple:複数チェックボックスで配列形式のパラメータを送れる
+          checkd: label[:checked],
+          #:checked	チェックボックスのチェックの有無
+          disabled: label[:disabled],
+          #:disabled	フォームの項目の利用禁止
+          include_hidden: false}, #チェックが入っていない時、何も送らない
+                         label[:id] %>
+
       <%= label.label_name %>
     <% end %>
     <br><br>
