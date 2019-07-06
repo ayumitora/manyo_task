@@ -1,15 +1,29 @@
 <h1><%= t('index') %></h1>
 <p><%= notice %></p>
-<%= form_with( model:Task.new, method: :get, local: true ) do |f| %>
+<%= form_with(model: Task.new, method: :get, local: true) do |f| %>
   <%= f.label :task_name_key, t('sarch_task_name') %>
   <%= f.text_field :task_name_key %>
   <%= f.label :status_key, t('sarch_status') %>
-  <%= f.select :status_key, [[t('done'),t('done')],
-                             [t('not_started'),t('not_started')],
-                             [t('in_progress'),t('in_progress')],
+  <%= f.select :status_key, [[t('done'), t('done')],
+                             [t('not_started'), t('not_started')],
+                             [t('in_progress'), t('in_progress')],
                              [t('hold'), t('hold')]],
-               prompt:''
+               prompt: ''
   %>
+  <%= f.label :status_key, t('sarch_label') %>
+  <%= f.select :label_ids, [[t('children'), t('children')],
+                             [t('mother'), t('mother')],
+                             [t('father'), t('father')],
+                             [t('friend'), t('friend')],
+                             [t('housework'), t('housework')],
+                             [t('work'), t('work')],
+                             [t('play'), t('play')],
+                             [t('other'), t('other')]],
+
+               prompt: ''
+  %>
+  <%#= f.select :label_ids, @tasks.which_labels.map{|t| [t.label_name, t.id]}, { include_blank: true } %>
+
   <%= f.hidden_field :search, value: 'true' %>
   <%= f.submit t('search') %>
   <%#= link_to 'Clear', forecasts_path %>
@@ -41,7 +55,7 @@
         <td><%= task.which_labels.count %></td>
         <td><%= link_to t('to_note'), task_path(task.id) %></td>
         <td><%= link_to t('edit'), edit_task_path(task.id) %></td>
-        <td><%= link_to t('destroy'), task_path(task.id), method: :delete ,data:{confirm:I18n.t('confirm')} %></td>
+        <td><%= link_to t('destroy'), task_path(task.id), method: :delete, data: {confirm: I18n.t('confirm')} %></td>
       </tr>
     <% end %>
   </table>

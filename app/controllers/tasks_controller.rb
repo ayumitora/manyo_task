@@ -22,11 +22,13 @@ class TasksController < ApplicationController
   def new
     @task = Task.new
     @labels = Label.all
+    # @task.label_tags.build
   end
 
   def create
     @task = current_user.tasks.new(task_params)
-    # @task.label_tags = label_tags.create(label_params)
+    # label_note = LabelTag.new(label_params)
+    # @task.label_tags = label_tags(label_ids: label_note)
     if @task.save # 親要素を保存かけてあげることで自動で子要素も保存されます！
       redirect_to root_path, notice: "タスクが保存されました！"
     else
@@ -65,13 +67,13 @@ class TasksController < ApplicationController
       :status,
       :priority,
       # label_tags: [:label_id, :task_id]
-      label_tags: []
+      which_label_ids: []
     )
   end
 
   # def label_params
   #   params.require(:task).permit(
-  #     label_tags: []
+  #     label_ids: []
   #   )
   # end
 
