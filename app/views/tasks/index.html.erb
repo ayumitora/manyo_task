@@ -10,19 +10,8 @@
                              [t('hold'), t('hold')]],
                prompt: ''
   %>
-  <%= f.label :status_key, t('sarch_label') %>
-  <%= f.select :label_ids, [[t('children'), t('children')],
-                             [t('mother'), t('mother')],
-                             [t('father'), t('father')],
-                             [t('friend'), t('friend')],
-                             [t('housework'), t('housework')],
-                             [t('work'), t('work')],
-                             [t('play'), t('play')],
-                             [t('other'), t('other')]],
-
-               prompt: ''
-  %>
-  <%#= f.select :label_ids, @tasks.which_labels.map{|t| [t.label_name, t.id]}, { include_blank: true } %>
+  <%= f.label :which_label_ids, t('sarch_label') %>
+  <%= f.select :which_label_ids, Label.all.map{|t| [t.label_name, t.id]}, { prompt: '' } %>
 
   <%= f.hidden_field :search, value: 'true' %>
   <%= f.submit t('search') %>
