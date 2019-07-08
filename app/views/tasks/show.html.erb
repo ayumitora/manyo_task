@@ -3,5 +3,11 @@
 <p><%= t('deadline') %>：<%= @task.deadline %></p>
 <p><%= t('status') %>：<%= @task.status %></p>
 <p><%= t('priority') %>：<%= @task.priority %></p>
+<p><%= t('label') %>：
+  <% @task.which_labels.each do |l| %>
+    <%= l.label_name %>,
+  <% end %>
+</p>
+
 
 <%= link_to t('index'), root_path %>
