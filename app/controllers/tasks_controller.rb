@@ -11,11 +11,14 @@ class TasksController < ApplicationController
     elsif params[:task] == nil
       # @tasks = Task.order(created_at: :desc)
       @tasks = current_user.tasks.latest
-    elsif params[:task][:search].present? && params[:task][:which_labels_ids].present?
+    elsif params[:task][:search]
+      @tasks = current_user.tasks.search(params)
       # @tasks = Task.where('task_name LIKE ? AND status LIKE ?', "%#{params[:task][:task_name_key]}%", "%#{params[:task][:status_key]}%")
       # @tasks = Task.search(params[:task][:task_name_key],params[:task][:status_key])
-      @tasks = current_user.tasks.search(params)
-      # @tasks = @tasks.which_labels.where()
+      if params[:task][:which_labels_ids]
+        label = LabelTag.where(label_id: params[:task][:which_labels_ids]).pluck(:task_id)
+        @tasks = @tasks.where(id: label)
+      end
     end
     @tasks = @tasks.page(params[:page]).per(7)
   end
