@@ -25,6 +25,15 @@ ja:
         password: "パスワード"
         password_confirmation: "確認用パスワード"
         admin: 管理者権限
+      label:
+        children: 子供達
+        mother: 母
+        father: 父
+        friend: 友達
+        housework: 家事
+        work: 仕事
+        play: 遊び
+        other: その他
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
