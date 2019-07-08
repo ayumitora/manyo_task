@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :label do
-    lavel_name { "" }
+    label_name { "赤" }
     label_tag_id { 1 }
   end
+
 end

@@ -15,8 +15,9 @@ class TasksController < ApplicationController
       @tasks = current_user.tasks.search(params)
       # @tasks = Task.where('task_name LIKE ? AND status LIKE ?', "%#{params[:task][:task_name_key]}%", "%#{params[:task][:status_key]}%")
       # @tasks = Task.search(params[:task][:task_name_key],params[:task][:status_key])
-      if params[:task][:which_labels_ids]
-        label = LabelTag.where(label_id: params[:task][:which_labels_ids]).pluck(:task_id)
+      if params[:task][:which_label_ids].present?
+        label = LabelTag.where(label_id: params[:task][:which_label_ids]).pluck(:task_id)
+        @tasks = current_user.tasks.search(params)
         @tasks = @tasks.where(id: label)
       end
     end
@@ -71,16 +72,10 @@ class TasksController < ApplicationController
       :deadline,
       :status,
       :priority,
-      # label_tags: [:label_id, :task_id]
       which_label_ids: []
     )
   end
 
-  # def label_params
-  #   params.require(:task).permit(
-  #     label_ids: []
-  #   )
-  # end
 
   def set_task
     @task = Task.find(params[:id])

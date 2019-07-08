@@ -11,13 +11,16 @@ RSpec.feature "タスク管理機能", type: :feature do
     #user_aのタスク
     FactoryBot.create(:task, id: 5, status: "保留中", user: @user_a)
     FactoryBot.create(:second_task, id: 6, status: "保留中", created_at: Time.current + 1.days, user: @user_a)
-    FactoryBot.create(:third_task, id: 7, status: "保留中", created_at: Time.current + 2.days, user: @user_a )
+    FactoryBot.create(:third_task, id: 7, status: "保留中", created_at: Time.current + 2.days, user: @user_a)
 
     # user_aでログイン
     visit login_path
     fill_in I18n.t('email'), with: 'test@example.com'
     fill_in I18n.t('password'), with: 'password'
     click_button I18n.t('login')
+
+    #ラベルの作成
+    FactoryBot.create(:label)
   end
 
   scenario 'ログインユーザーのタスク一覧の確認' do
@@ -51,14 +54,12 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in I18n.t('sarch_task_name'), with: 'タイトル２'
     select '保留中', from: I18n.t('sarch_status')
     click_button I18n.t('search')
-    # save_and_open_page
     expect(page).to have_content 'タイトル２'
     expect(page).to have_content '保留中'
   end
 
   scenario "優先度が登録できているか" do
     visit tasks_path(id: 7)
-    save_and_open_page
     expect(page).to have_content '低'
   end
 
@@ -67,4 +68,32 @@ RSpec.feature "タスク管理機能", type: :feature do
     click_on '優先度でソートする'
     expect(User.find(@user_a.id).tasks.order("priority ASC").map(&:id)).to eq [5, 7, 6]
   end
+
+  scenario "タスクにラベルをつけられる" do
+    visit new_task_path
+    fill_in 'task[task_name]', with: '書類提出'
+    fill_in 'task[note]', with: '内容が揃っているか確認'
+    # save_and_open_page
+    check "task_which_label_ids_8"
+    click_button I18n.t('create')
+    visit task_path(id: 2)
+    expect(page).to have_content '書類提出'
+    expect(page).to have_content '内容が揃っているか確認'
+    expect(page).to have_content '赤'
+  end
+
+  scenario "つけたラベルで検索できる" do
+    visit new_task_path
+    fill_in 'task[task_name]', with: '書類提出'
+    fill_in 'task[note]', with: '内容が揃っているか確認'
+    check "task_which_label_ids_9"
+    click_button I18n.t('create')
+    select '赤', from: I18n.t('sarch_label')
+    click_button I18n.t('search')
+
+    expect(page).to have_content '書類提出'
+    expect(page).to have_content '内容が揃っているか確認'
+    # save_and_open_page
+  end
+
 end
